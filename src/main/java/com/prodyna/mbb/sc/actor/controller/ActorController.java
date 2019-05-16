@@ -1,4 +1,4 @@
-package com.prodyna.mbb.sc.actor;
+package com.prodyna.mbb.sc.actor.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 

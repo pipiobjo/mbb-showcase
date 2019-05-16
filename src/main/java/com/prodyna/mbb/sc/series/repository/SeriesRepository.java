@@ -1,5 +1,6 @@
-package com.prodyna.mbb.sc.series;
+package com.prodyna.mbb.sc.series.repository;
 
+import com.prodyna.mbb.sc.series.domain.SeriesDomainObject;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.prodyna.mbb.sc.series;
+package com.prodyna.mbb.sc.series.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
