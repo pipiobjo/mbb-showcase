@@ -21,3 +21,9 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'build'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'aks-container-registry'
+    repository: 'mbb-showcase'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
