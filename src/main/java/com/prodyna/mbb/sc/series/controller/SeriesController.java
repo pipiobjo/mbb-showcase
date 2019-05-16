@@ -34,12 +34,12 @@ public class SeriesController {
         return seriesService.findAll(PageableUtil.getPageable(page, size, defaultPageStart, defaultPageSize));
     }
 
-    @RequestMapping("/series/{id:[\\\\d]+}")
+    @RequestMapping("/series/id/{id:[\\d]+}")
     public SeriesDomainObject findById(@PathVariable Long id) {
         return seriesService.findById(id);
     }
 
-    @RequestMapping("/series/{name}")
+    @RequestMapping("/series/name/{name:[a-zA-Z0-9]*}")
     public Page<SeriesDomainObject> findByName(@PathVariable String name, @RequestParam(required = false)  Integer page, @RequestParam(required = false)  Integer size) {
         return seriesService.findByName(name, PageableUtil.getPageable(page, size, defaultPageStart, defaultPageSize));
     }
