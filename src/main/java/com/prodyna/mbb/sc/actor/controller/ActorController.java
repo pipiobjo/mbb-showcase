@@ -32,7 +32,7 @@ public class ActorController {
         return actorService.findAll(PageableUtil.getPageable(page, size, defaultPageStart, defaultPageSize));
     }
 
-    @RequestMapping("/actor/{id}")
+    @RequestMapping("/actor/{id:[\\\\d]+}")
     public ActorDomainObject findById(@PathVariable Long id) {
         return actorService.findById(id);
     }

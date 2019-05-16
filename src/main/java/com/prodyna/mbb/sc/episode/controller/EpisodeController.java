@@ -35,7 +35,7 @@ public class EpisodeController {
         return episodeService.findAll(PageableUtil.getPageable(page, size, defaultPageStart, defaultPageSize));
     }
 
-    @RequestMapping("/episode/{id}")
+    @RequestMapping("/episode/{id:[\\\\d]+}")
     public EpisodeDomainObject findById(@PathVariable Long id) {
         return episodeService.findById(id);
     }
