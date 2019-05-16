@@ -17,7 +17,7 @@ public class SeriesMapperManual implements SeriesMapper {
         seriesDomainObject.setActors(
                 Arrays.stream(seriesType.getActors()
                         .split("|"))
-                        .filter(StringUtils::isBlank)
+                        .filter(StringUtils::isNotBlank)
                         .collect(Collectors.toList())
         );
 
