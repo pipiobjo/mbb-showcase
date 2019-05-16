@@ -8,13 +8,10 @@
 
 package com.prodyna.mbb.sc.contribution;
 
-import java.util.Calendar;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
+import java.util.Calendar;
 
-public class Adapter1
-    extends XmlAdapter<String, Calendar>
-{
-
+public class Adapter1 extends XmlAdapter<String, Calendar> {
 
     public Calendar unmarshal(String value) {
         return (javax.xml.bind.DatatypeConverter.parseDateTime(value));

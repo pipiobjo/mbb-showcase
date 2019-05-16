@@ -8,13 +8,10 @@
 
 package com.prodyna.mbb.sc.contribution;
 
-import java.util.Date;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
+import java.util.Date;
 
-public class Adapter2
-    extends XmlAdapter<String, Date>
-{
-
+public class Adapter2 extends XmlAdapter<String, Date> {
 
     public Date unmarshal(String value) {
         return new Date(value);
