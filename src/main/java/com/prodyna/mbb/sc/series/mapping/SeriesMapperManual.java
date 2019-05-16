@@ -2,6 +2,10 @@ package com.prodyna.mbb.sc.series.mapping;
 
 import com.prodyna.mbb.sc.contribution.SeriesType;
 import com.prodyna.mbb.sc.series.service.SeriesDomainObject;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class SeriesMapperManual implements SeriesMapper {
 
@@ -9,7 +13,14 @@ public class SeriesMapperManual implements SeriesMapper {
     public SeriesDomainObject getSeries(SeriesType seriesType) {
         SeriesDomainObject seriesDomainObject = new SeriesDomainObject();
         seriesDomainObject.setId(seriesType.getId());
-        seriesDomainObject.setActors(seriesType.getActors());
+
+        seriesDomainObject.setActors(
+                Arrays.stream(seriesType.getActors()
+                        .split("|"))
+                        .filter(StringUtils::isBlank)
+                        .collect(Collectors.toList())
+        );
+
         seriesDomainObject.setAirsDayOfWeek(seriesType.getAirsDayOfWeek());
         seriesDomainObject.setAirsTime(seriesType.getAirsTime());
         seriesDomainObject.setContentRating(seriesType.getContentRating());
