@@ -3,5 +3,5 @@ spring:
   data:
     neo4j:
       uri: "bolt://localhost:7687"
-      username: "admin"
+      username: "neo4j"
       password: "admin"
