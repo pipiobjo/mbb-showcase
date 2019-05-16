@@ -4,6 +4,8 @@ import com.prodyna.mbb.sc.contribution.EpisodeType;
 import com.prodyna.mbb.sc.episode.service.EpisodeDomainObject;
 import org.springframework.stereotype.Component;
 
+import java.util.Calendar;
+
 @Component
 public class EpisodeMapperManual {
 
@@ -23,7 +25,12 @@ public class EpisodeMapperManual {
         object.setEpImgFlag(et.getEpImgFlag());
         object.setEpisodeName(et.getEpisodeName());
         object.setEpisodeNumber(et.getEpisodeNumber());
-        object.setFirstAired(et.getFirstAired());
+
+        Calendar firstAired = et.getFirstAired();
+        if (null != firstAired) {
+            object.setFirstAired(firstAired.getTime());
+        }
+
         object.setGuestStars(et.getGuestStars());
         object.setImdbid(et.getIMDBID());
         object.setLanguage(et.getLanguage());

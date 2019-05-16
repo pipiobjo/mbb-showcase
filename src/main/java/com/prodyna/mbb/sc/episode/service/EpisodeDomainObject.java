@@ -7,6 +7,7 @@ import org.neo4j.ogm.annotation.NodeEntity;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.Date;
 
 @Data
 @NodeEntity
@@ -19,6 +20,7 @@ public class EpisodeDomainObject {
     private String name;
 
     private int episodeId;
+
     private int combinedEpisodenumber;
     private int combinedSeason;
     private String dvdChapter;
@@ -29,7 +31,7 @@ public class EpisodeDomainObject {
     private int epImgFlag;
     private String episodeName;
     private int episodeNumber;
-    private Calendar firstAired;
+    private Date firstAired;
     private String guestStars;
     private String imdbid;
     private String language;
