@@ -1,5 +1,6 @@
 package com.prodyna.mbb.sc.config;
 
+import com.prodyna.mbb.sc.user.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,8 +23,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         User.UserBuilder users = User.withDefaultPasswordEncoder();
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(users.username("user").password("password").roles("USER").build());
-        manager.createUser(users.username("admin").password("password").roles("USER", "ADMIN", "ACTUATOR").build());
+        manager.createUser(users.username("user").password("password").roles(Role.USER_ROLE).build());
+        manager.createUser(users.username("contributor").password("password").roles(Role.CONTRIBUTOR_ROLE).build());
+        manager.createUser(users.username("admin").password("password").roles(Role.USER_ROLE, Role.ADMIN_ROLE, Role.CONTRIBUTOR_ROLE, "ACTUATOR").build());
         return manager;
 
     }
@@ -34,15 +36,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .exceptionHandling()
-//                .authenticationEntryPoint(restAuthenticationEntryPoint)
+                .and()
+                .anonymous()
                 .and()
                 .authorizeRequests()
+                .antMatchers("/actor**").permitAll()
+                .antMatchers("/series**").permitAll()
+                .antMatchers("/episode**").permitAll()
                 .antMatchers("/contribution/**").hasRole("ADMIN")
-                .antMatchers("/**").authenticated()
                 .and()
                 .formLogin()
-//                .successHandler(mySuccessHandler)
-//                .failureHandler(myFailureHandler)
                 .and()
                 .logout();
     }
