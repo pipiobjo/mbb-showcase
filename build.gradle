@@ -4,6 +4,7 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: "jacoco"
 
 group = 'com.prodyna.mbb'
 version = '0.0.1-SNAPSHOT'
@@ -14,11 +15,50 @@ repositories {
 }
 
 dependencies {
+
+	// actuator
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+	// spring data
 	implementation 'org.springframework.boot:spring-boot-starter-data-neo4j'
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+
+	// spring security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	// lombok
+	compileOnly('org.projectlombok:lombok:1.16.20')
+	annotationProcessor('org.projectlombok:lombok:1.16.20')
+	testAnnotationProcessor('org.projectlombok:lombok:1.16.20')
+
+	// devtools
 	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// swagger
+	implementation "io.springfox:springfox-swagger2:2.9.2"
+	implementation "io.springfox:springfox-swagger-ui:2.9.2"
+
+
+	// testing
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.12.2'
+	testImplementation 'io.rest-assured:rest-assured:4.0.0'
+
+}
+
+// create test reports in xml and html
+jacocoTestReport {
+	reports {
+		xml.enabled true
+		csv.enabled false
+		html.destination file("${buildDir}/jacocoHtml")
+	}
+}
+
+
+// define explizit wrapper for azure
+wrapper {
+	gradleVersion = '5.4.1'
+	distributionUrl = distributionUrl.replace("bin", "all")
 }
