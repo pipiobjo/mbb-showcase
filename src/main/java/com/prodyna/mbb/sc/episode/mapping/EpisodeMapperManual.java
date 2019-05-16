@@ -11,6 +11,8 @@ public class EpisodeMapperManual {
 
         EpisodeDomainObject object = new EpisodeDomainObject();
 
+        object.setEpisodeId(et.getId());
+
         object.setCombinedEpisodenumber(et.getCombinedEpisodenumber());
         object.setCombinedSeason(et.getCombinedSeason());
         object.setDvdChapter(et.getDVDChapter());

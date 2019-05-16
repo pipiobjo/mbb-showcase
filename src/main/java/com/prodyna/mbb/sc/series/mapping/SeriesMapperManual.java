@@ -12,7 +12,7 @@ public class SeriesMapperManual implements SeriesMapper {
     @Override
     public SeriesDomainObject getSeries(SeriesType seriesType) {
         SeriesDomainObject seriesDomainObject = new SeriesDomainObject();
-        seriesDomainObject.setId(seriesType.getId());
+        seriesDomainObject.setOriginalId(seriesType.getId());
 
         seriesDomainObject.setActors(
                 Arrays.stream(seriesType.getActors()
