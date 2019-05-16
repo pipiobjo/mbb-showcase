@@ -4,11 +4,12 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.List;
 
 @Data
 public class SeriesDomainObject {
     private int id;
-    private String actors;
+    private List<String> actors;
     private String airsDayOfWeek;
     private Calendar airsTime;
     private String contentRating;
