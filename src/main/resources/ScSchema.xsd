@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="Data" type="DataType" />
+  <xsd:complexType name="DataType">
+    <xsd:sequence>
+      <xsd:element name="Series" type="SeriesType" />
+      <xsd:element maxOccurs="unbounded" name="Episode" type="EpisodeType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="EpisodeType">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:int" />
+      <xsd:element name="Combined_episodenumber" type="xsd:int" />
+      <xsd:element name="Combined_season" type="xsd:int" />
+      <xsd:element name="DVD_chapter" type="xsd:string" />
+      <xsd:element name="DVD_discid" type="xsd:string" />
+      <xsd:element name="DVD_episodenumber" type="xsd:string" />
+      <xsd:element name="DVD_season" type="xsd:string" />
+      <xsd:element name="Director" type="xsd:string" />
+      <xsd:element name="EpImgFlag" type="xsd:int" />
+      <xsd:element name="EpisodeName" type="xsd:string" />
+      <xsd:element name="EpisodeNumber" type="xsd:int" />
+      <xsd:element name="FirstAired" type="xsd:dateTime" />
+      <xsd:element name="GuestStars" type="xsd:string" />
+      <xsd:element name="IMDB_ID" type="xsd:string" />
+      <xsd:element name="Language" type="xsd:string" />
+      <xsd:element name="Overview" type="xsd:string" />
+      <xsd:element name="ProductionCode" type="xsd:int" />
+      <xsd:element name="Rating" type="xsd:decimal" />
+      <xsd:element name="RatingCount" type="xsd:int" />
+      <xsd:element name="SeasonNumber" type="xsd:int" />
+      <xsd:element name="Writer" type="xsd:string" />
+      <xsd:element name="absolute_number" type="xsd:string" />
+      <xsd:element name="airsafter_season" type="xsd:string" />
+      <xsd:element name="airsbefore_episode" type="xsd:string" />
+      <xsd:element name="airsbefore_season" type="xsd:string" />
+      <xsd:element name="filename" type="xsd:string" />
+      <xsd:element name="is_movie" type="xsd:int" />
+      <xsd:element name="lastupdated" type="xsd:int" />
+      <xsd:element name="seasonid" type="xsd:int" />
+      <xsd:element name="seriesid" type="xsd:int" />
+      <xsd:element name="thumb_added" type="xsd:string" />
+      <xsd:element name="thumb_height" type="xsd:int" />
+      <xsd:element name="thumb_width" type="xsd:int" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SeriesType">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:int" />
+      <xsd:element name="Actors" type="xsd:string" />
+      <xsd:element name="Airs_DayOfWeek" type="xsd:string" />
+      <xsd:element name="Airs_Time" type="xsd:dateTime" />
+      <xsd:element name="ContentRating" type="xsd:string" />
+      <xsd:element name="FirstAired" type="xsd:dateTime" />
+      <xsd:element name="Genre" type="xsd:string" />
+      <xsd:element name="IMDB_ID" type="xsd:string" />
+      <xsd:element name="Language" type="xsd:string" />
+      <xsd:element name="Network" type="xsd:string" />
+      <xsd:element name="NetworkID" type="xsd:string" />
+      <xsd:element name="Overview" type="xsd:string" />
+      <xsd:element name="Rating" type="xsd:decimal" />
+      <xsd:element name="RatingCount" type="xsd:int" />
+      <xsd:element name="Runtime" type="xsd:int" />
+      <xsd:element name="SeriesID" type="xsd:int" />
+      <xsd:element name="SeriesName" type="xsd:string" />
+      <xsd:element name="Status" type="xsd:string" />
+      <xsd:element name="added" type="xsd:string" />
+      <xsd:element name="addedBy" type="xsd:string" />
+      <xsd:element name="banner" type="xsd:string" />
+      <xsd:element name="fanart" type="xsd:string" />
+      <xsd:element name="finale_aired" type="xsd:dateTime" />
+      <xsd:element name="lastupdated" type="xsd:int" />
+      <xsd:element name="poster" type="xsd:string" />
+      <xsd:element name="tms_wanted_old" type="xsd:int" />
+      <xsd:element name="zap2it_id" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
