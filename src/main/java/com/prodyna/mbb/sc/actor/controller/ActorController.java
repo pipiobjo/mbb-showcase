@@ -2,9 +2,10 @@ package com.prodyna.mbb.sc.actor.controller;
 
 import com.prodyna.mbb.sc.actor.service.ActorDomainObject;
 import com.prodyna.mbb.sc.actor.service.ActorService;
+import com.prodyna.mbb.sc.util.PageableUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,9 +21,15 @@ public class ActorController {
         this.actorService = actorService;
     }
 
+    @Value("${mvc.page.default.size}")
+    private Integer defaultPageSize;
+
+    @Value("${mvc.page.default.start}")
+    private Integer defaultPageStart;
+
     @RequestMapping("/actor")
-    public Page<ActorDomainObject> findAll(@RequestParam Integer page, @RequestParam Integer size) {
-        return actorService.findAll(PageRequest.of(page, size));
+    public Page<ActorDomainObject> findAll(@RequestParam(required = false)  Integer page, @RequestParam(required = false)  Integer size) {
+        return actorService.findAll(PageableUtil.getPageable(page, size, defaultPageStart, defaultPageSize));
     }
 
     @RequestMapping("/actor/{id}")
@@ -31,7 +38,8 @@ public class ActorController {
     }
 
     @RequestMapping("/actor/{name}")
-    public Page<ActorDomainObject> findByName(@PathVariable String name, @RequestParam Integer page, @RequestParam Integer size) {
-        return actorService.findByName(name, PageRequest.of(page, size));
+    public Page<ActorDomainObject> findByName(@PathVariable String name, @RequestParam(required = false) Integer page, @RequestParam(required = false)  Integer size) {
+        return actorService.findByName(name, PageableUtil.getPageable(page, size, defaultPageStart, defaultPageSize));
     }
+
 }

@@ -2,9 +2,12 @@ package com.prodyna.mbb.sc.series.controller;
 
 import com.prodyna.mbb.sc.series.service.SeriesDomainObject;
 import com.prodyna.mbb.sc.series.service.SeriesService;
+import com.prodyna.mbb.sc.util.PageableUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,9 +23,15 @@ public class SeriesController {
         this.seriesService = seriesService;
     }
 
+    @Value("${mvc.page.default.size}")
+    private Integer defaultPageSize;
+
+    @Value("${mvc.page.default.start}")
+    private Integer defaultPageStart;
+
     @RequestMapping("/series")
-    public Page<SeriesDomainObject> findAll(@RequestParam Integer page, @RequestParam Integer size) {
-        return seriesService.findAll(PageRequest.of(page, size));
+    public Page<SeriesDomainObject> findAll(@RequestParam(required = false)  Integer page, @RequestParam(required = false)  Integer size) {
+        return seriesService.findAll(PageableUtil.getPageable(page, size, defaultPageStart, defaultPageSize));
     }
 
     @RequestMapping("/series/{id}")
@@ -31,7 +40,8 @@ public class SeriesController {
     }
 
     @RequestMapping("/series/{name}")
-    public Page<SeriesDomainObject> findByName(@PathVariable String name, @RequestParam Integer page, @RequestParam Integer size) {
-        return seriesService.findByName(name, PageRequest.of(page, size));
+    public Page<SeriesDomainObject> findByName(@PathVariable String name, @RequestParam(required = false)  Integer page, @RequestParam(required = false)  Integer size) {
+        return seriesService.findByName(name, PageableUtil.getPageable(page, size, defaultPageStart, defaultPageSize));
     }
+
 }
