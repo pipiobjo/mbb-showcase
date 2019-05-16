@@ -1,14 +1,16 @@
 package com.prodyna.mbb.sc.episode.mapping;
 
+import org.springframework.stereotype.Component;
+
 import com.prodyna.mbb.sc.contribution.EpisodeType;
 import com.prodyna.mbb.sc.episode.service.EpisodeDomainObject;
-import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
 
 @Component
-public class EpisodeMapperManual {
+public class EpisodeMapperManual implements EpisodeMapper {
 
+    @Override
     public EpisodeDomainObject toDomain(EpisodeType et) {
 
         EpisodeDomainObject object = new EpisodeDomainObject();

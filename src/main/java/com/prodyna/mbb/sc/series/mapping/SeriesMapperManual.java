@@ -3,10 +3,12 @@ package com.prodyna.mbb.sc.series.mapping;
 import com.prodyna.mbb.sc.contribution.SeriesType;
 import com.prodyna.mbb.sc.series.service.SeriesDomainObject;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+@Component
 public class SeriesMapperManual implements SeriesMapper {
 
     @Override
