@@ -1,0 +1,5 @@
+# neo4j config
+spring:
+  data:
+    neo4j:
+      uri: "bolt://neo-helm-neo4j:7687"
