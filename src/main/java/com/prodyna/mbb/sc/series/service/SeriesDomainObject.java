@@ -1,6 +1,8 @@
 package com.prodyna.mbb.sc.series.service;
 
 import lombok.Data;
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -8,7 +10,13 @@ import java.util.List;
 
 @Data
 public class SeriesDomainObject {
-    private int id;
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+
+    private int originalId;
     private List<String> actors;
     private String airsDayOfWeek;
     private Calendar airsTime;

@@ -1,16 +1,24 @@
 package com.prodyna.mbb.sc.episode.service;
 
 import lombok.Data;
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
+import org.neo4j.ogm.annotation.NodeEntity;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
 
 @Data
+@NodeEntity
 public class EpisodeDomainObject {
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     private String name;
 
-    private int id;
+    private int episodeId;
     private int combinedEpisodenumber;
     private int combinedSeason;
     private String dvdChapter;
