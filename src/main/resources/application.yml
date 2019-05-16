@@ -1,0 +1,5 @@
+mvc:
+  page:
+    default:
+      start: 0
+      size: 20
