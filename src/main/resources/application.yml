@@ -10,3 +10,4 @@ management:
       cors:
         allowed-origins: "*"
         allowed-methods: GET,POST,HEAD,OPTIONS
+        allowCredentials: true
