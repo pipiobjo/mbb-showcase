@@ -3,3 +3,10 @@ mvc:
     default:
       start: 0
       size: 20
+
+management:
+  endpoints:
+    web:
+      cors:
+        allowed-origins="*"
+        allowed-methods=GET,POST,HEAD,OPTIONS
