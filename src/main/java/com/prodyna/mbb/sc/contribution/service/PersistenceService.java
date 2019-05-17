@@ -2,9 +2,12 @@ package com.prodyna.mbb.sc.contribution.service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBException;
 
+import com.prodyna.mbb.sc.contribution.SeriesType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,7 +25,7 @@ import lombok.extern.java.Log;
 
 @Log
 @Service
-public class PersitenceService {
+public class PersistenceService {
 
     @Autowired
     private XmlParserService service;
@@ -34,25 +37,24 @@ public class PersitenceService {
     private SeriesMapperManual seriesMapper;
 
     @Autowired
-    private EpisodeRepository episodeRepository;
-
-    @Autowired
     private SeriesRepository seriesRepository;
 
     public void transformAndPersist(MultipartFile file) throws JAXBException, IOException {
 
-	DataType dataType = service.unmarshal(file);
+        DataType dataType = service.unmarshal(file);
 
-	List<EpisodeType> episodes = dataType.getEpisode();
-	for (EpisodeType episodeType : episodes) {
-	    EpisodeDomainObject episode = episodeMapper.toDomain(episodeType);
-	    episodeRepository.save(episode);
-	    log.info("saved episode: " + episode.getImdbid());
-	}
+        SeriesType series = dataType.getSeries();
 
-	SeriesDomainObject series = seriesMapper.toDomain(dataType.getSeries());
-	seriesRepository.save(series);
-	log.info("saved series: " + series.getImdbid());
+        SeriesDomainObject seriesDomainObject = seriesMapper.toDomain(series);
 
+        Set<EpisodeDomainObject> episodes = dataType.getEpisode().stream()
+                .map(episodeType -> episodeMapper.toDomain(episodeType))
+                .collect(Collectors.toSet());
+
+        seriesDomainObject.setEpisodes(episodes);
+
+        SeriesDomainObject saved = seriesRepository.save(seriesDomainObject);
+
+        log.info("saved series: " + saved.getImdbid());
     }
 }

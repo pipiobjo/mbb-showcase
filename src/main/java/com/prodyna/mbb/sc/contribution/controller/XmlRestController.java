@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.prodyna.mbb.sc.contribution.service.PersitenceService;
+import com.prodyna.mbb.sc.contribution.service.PersistenceService;
 
 @RestController("/contribution")
 public class XmlRestController {
 
     @Autowired
-    private PersitenceService persistenceService;
+    private PersistenceService persistenceService;
 
     @PreAuthorize("hasRole('Role.CONTRIBUTOR_ROLE')")
     @RequestMapping(value = "/upload",  method = RequestMethod.POST, consumes = {"multipart/form-data"})
