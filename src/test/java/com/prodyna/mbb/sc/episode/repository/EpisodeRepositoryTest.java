@@ -4,6 +4,7 @@ import com.prodyna.mbb.sc.contribution.DataType;
 import com.prodyna.mbb.sc.contribution.EpisodeType;
 import com.prodyna.mbb.sc.episode.mapping.EpisodeMapperManual;
 import com.prodyna.mbb.sc.episode.service.EpisodeDomainObject;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.io.File;
 
 import static org.junit.Assert.*;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("local")
