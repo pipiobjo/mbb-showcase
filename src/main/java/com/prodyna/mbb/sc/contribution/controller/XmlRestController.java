@@ -19,7 +19,7 @@ public class XmlRestController {
     @Autowired
     private PersistenceService persistenceService;
 
-    @PreAuthorize("hasRole('Role.CONTRIBUTOR_ROLE')")
+    @PreAuthorize("hasRole(T(com.prodyna.mbb.sc.user.Role).CONTRIBUTOR_ROLE) or hasRole(T(com.prodyna.mbb.sc.user.Role).ADMIN_ROLE)")
     @RequestMapping(value = "/upload",  method = RequestMethod.POST, consumes = {"multipart/form-data"})
     public ResponseEntity<String> upload(@RequestParam MultipartFile file) throws Exception {
 	try {
@@ -30,7 +30,7 @@ public class XmlRestController {
         return new ResponseEntity<String>("File successfully uploaded", HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('Role.CONTRIBUTOR_ROLE')")
+    @PreAuthorize("hasRole(T(com.prodyna.mbb.sc.user.Role).CONTRIBUTOR_ROLE) or hasRole(T(com.prodyna.mbb.sc.user.Role).ADMIN_ROLE)")
     @RequestMapping(value = "/uploadMulti",  method = RequestMethod.POST, consumes = {"multipart/form-data"})
     public ResponseEntity<String> uploadMulti(@RequestParam MultipartFile[] files) throws Exception {
 	StringBuilder successFileNames = new StringBuilder();
