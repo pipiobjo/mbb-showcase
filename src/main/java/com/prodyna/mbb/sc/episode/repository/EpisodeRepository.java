@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface EpisodeRepository extends Neo4jRepository<EpisodeDomainObject, Long> {
 
     Page<EpisodeDomainObject> findByName(String name, Pageable page);
+
+    EpisodeDomainObject findByEpisodeId(int id);
 }

@@ -12,4 +12,6 @@ import java.util.List;
 public interface ActorRepository extends Neo4jRepository<ActorDomainObject, Long> {
 
     Page<ActorDomainObject> findByName(String name, Pageable page);
+
+    ActorDomainObject findByName(String name);
 }

@@ -2,6 +2,7 @@ package com.prodyna.mbb.sc.actor.service;
 
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
+import org.neo4j.ogm.annotation.Index;
 import org.neo4j.ogm.annotation.NodeEntity;
 
 import java.util.Objects;
@@ -14,6 +15,7 @@ public class ActorDomainObject {
     @GeneratedValue
     private Long id;
 
+    @Index
     private String name;
 
     public String getName() {

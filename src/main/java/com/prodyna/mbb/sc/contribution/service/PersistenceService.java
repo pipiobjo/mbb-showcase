@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBException;
 
+import com.prodyna.mbb.sc.actor.repository.ActorRepository;
+import com.prodyna.mbb.sc.actor.service.ActorDomainObject;
 import com.prodyna.mbb.sc.contribution.SeriesType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,13 @@ public class PersistenceService {
     @Autowired
     private SeriesRepository seriesRepository;
 
+    @Autowired
+    private ActorRepository actorRepository;
+
+
+    @Autowired
+    private EpisodeRepository episodeRepository;
+
     public void transformAndPersist(MultipartFile file) throws JAXBException, IOException {
 
         DataType dataType = service.unmarshal(file);
@@ -47,10 +56,30 @@ public class PersistenceService {
 
         SeriesDomainObject seriesDomainObject = seriesMapper.toDomain(series);
 
+        Set<ActorDomainObject> actors = seriesDomainObject.getActors().stream()
+                .map(actor -> {
+                    ActorDomainObject entity = actorRepository.findByName(actor.getName());
+                    if (null == entity) {
+                        return actor;
+                    } else {
+                        return entity;
+                    }
+                })
+                .collect(Collectors.toSet());
+        seriesDomainObject.setActors(actors);
+
+
         Set<EpisodeDomainObject> episodes = dataType.getEpisode().stream()
                 .map(episodeType -> episodeMapper.toDomain(episodeType))
+                .map(episode -> {
+                    EpisodeDomainObject entity = episodeRepository.findByEpisodeId(episode.getEpisodeId());
+                    if (null == entity) {
+                        return episode;
+                    } else {
+                        return entity;
+                    }
+                })
                 .collect(Collectors.toSet());
-
         seriesDomainObject.setEpisodes(episodes);
 
         SeriesDomainObject saved = seriesRepository.save(seriesDomainObject);
