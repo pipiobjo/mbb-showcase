@@ -8,5 +8,5 @@ management:
   endpoints:
     web:
       cors:
-        allowed-origins="*"
-        allowed-methods=GET,POST,HEAD,OPTIONS
+        allowed-origins: "*"
+        allowed-methods: GET,POST,HEAD,OPTIONS
