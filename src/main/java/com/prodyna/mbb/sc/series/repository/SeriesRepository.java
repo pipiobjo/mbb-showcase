@@ -12,5 +12,6 @@ public interface SeriesRepository extends Neo4jRepository<SeriesDomainObject, Lo
 
     Page<SeriesDomainObject> findByName(String name, Pageable page);
 
+    SeriesDomainObject findByOriginalId(int id);
 
 }
