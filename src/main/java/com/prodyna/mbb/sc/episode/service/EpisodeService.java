@@ -20,8 +20,8 @@ public class EpisodeService {
         return episodeRepository.findAll(page);
     }
 
-    public EpisodeDomainObject findById(Long id) {
-        return episodeRepository.findByEpisodeId(id.intValue());
+    public EpisodeDomainObject findById(String id) {
+        return episodeRepository.findByImdbid(id);
     }
 
     public Page<EpisodeDomainObject> findByName(String name, Pageable page) {

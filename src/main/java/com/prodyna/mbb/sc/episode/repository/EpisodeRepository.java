@@ -12,4 +12,6 @@ public interface EpisodeRepository extends Neo4jRepository<EpisodeDomainObject, 
     Page<EpisodeDomainObject> findByName(String name, Pageable page);
 
     EpisodeDomainObject findByEpisodeId(int id);
+
+    EpisodeDomainObject findByImdbid(String id);
 }

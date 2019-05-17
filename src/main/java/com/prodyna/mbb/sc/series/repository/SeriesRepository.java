@@ -14,4 +14,5 @@ public interface SeriesRepository extends Neo4jRepository<SeriesDomainObject, Lo
 
     SeriesDomainObject findByOriginalId(int id);
 
+    SeriesDomainObject findByImdbid(String imdbId);
 }

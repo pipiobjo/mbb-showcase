@@ -34,8 +34,8 @@ public class SeriesController {
         return seriesService.findAll(PageableUtil.getPageable(page, size, defaultPageStart, defaultPageSize));
     }
 
-    @RequestMapping("/series/id/{id:[\\d]+}")
-    public SeriesDomainObject findById(@PathVariable Long id) {
+    @RequestMapping("/series/id/{id}")
+    public SeriesDomainObject findById(@PathVariable String id) {
         return seriesService.findById(id);
     }
 

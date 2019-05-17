@@ -22,8 +22,8 @@ public class SeriesService {
         return seriesRepository.findAll(page);
     }
 
-    public SeriesDomainObject findById(Long id) {
-        return seriesRepository.findByOriginalId(id.intValue());
+    public SeriesDomainObject findById(String id) {
+        return seriesRepository.findByImdbid(id);
     }
 
     public Page<SeriesDomainObject> findByName(String name, Pageable page) {
