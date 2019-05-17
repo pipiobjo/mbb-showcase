@@ -1,6 +1,5 @@
 package com.prodyna.mbb.sc.series.service;
 
-import com.prodyna.mbb.sc.episode.service.EpisodeDomainObject;
 import com.prodyna.mbb.sc.series.repository.SeriesRepository;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class SeriesService {
     }
 
     public SeriesDomainObject findById(Long id) {
-        return seriesRepository.findById(id).orElse(null);
+        return seriesRepository.findByOriginalId(id.intValue());
     }
 
     public Page<SeriesDomainObject> findByName(String name, Pageable page) {

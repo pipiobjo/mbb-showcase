@@ -21,7 +21,7 @@ public class EpisodeService {
     }
 
     public EpisodeDomainObject findById(Long id) {
-        return episodeRepository.findById(id).orElse(null);
+        return episodeRepository.findByEpisodeId(id.intValue());
     }
 
     public Page<EpisodeDomainObject> findByName(String name, Pageable page) {
