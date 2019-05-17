@@ -47,12 +47,12 @@ public class PersitenceService {
 	for (EpisodeType episodeType : episodes) {
 	    EpisodeDomainObject episode = episodeMapper.toDomain(episodeType);
 	    episodeRepository.save(episode);
-	    log.info("saved episode: " + episode.getId());
+	    log.info("saved episode: " + episode.getImdbid());
 	}
 
-	SeriesDomainObject series = seriesMapper.getSeries(dataType.getSeries());
+	SeriesDomainObject series = seriesMapper.toDomain(dataType.getSeries());
 	seriesRepository.save(series);
-	log.info("saved series: " + series.getId());
+	log.info("saved series: " + series.getImdbid());
 
     }
 }
